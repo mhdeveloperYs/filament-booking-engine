@@ -1,0 +1,67 @@
+{
+    "name": "mhstudio/filament-booking-engine",
+    "description": "A correctness-focused, Filament-native booking & appointments engine — free core with a Pro tier.",
+    "keywords": [
+        "laravel",
+        "filament",
+        "filament-plugin",
+        "booking",
+        "appointments",
+        "scheduling",
+        "availability"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MH Studio",
+            "email": "ayoubtamous0@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/mhstudio/filament-booking-engine",
+    "support": {
+        "issues": "https://github.com/mhstudio/filament-booking-engine/issues",
+        "source": "https://github.com/mhstudio/filament-booking-engine"
+    },
+    "require": {
+        "php": "^8.3",
+        "filament/filament": "^4.0|^5.0",
+        "nesbot/carbon": "^2.72|^3.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.1",
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MHStudio\\FilamentBookingEngine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MHStudio\\FilamentBookingEngine\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MHStudio\\FilamentBookingEngine\\BookingEngineServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "pint": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
