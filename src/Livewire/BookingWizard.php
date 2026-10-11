@@ -6,6 +6,7 @@ namespace MHStudio\FilamentBookingEngine\Livewire;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use MHStudio\FilamentBookingEngine\Booking\BookingManager;
 use MHStudio\FilamentBookingEngine\Booking\BookingRequest;
@@ -17,6 +18,7 @@ use MHStudio\FilamentBookingEngine\Models\Service;
 use MHStudio\FilamentBookingEngine\Schedule\ScheduleResolver;
 
 /** Public booking wizard. */
+#[Layout('filament-booking-engine::layouts.public')]
 final class BookingWizard extends Component
 {
     public ?int $serviceId = null;

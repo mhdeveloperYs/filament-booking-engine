@@ -53,13 +53,16 @@ adds an error on `slotStart` and clears the choice — no 500s, no silent double
 
 ## Views
 
-Publish to restyle:
+The wizard ships its own layout (`filament-booking-engine::layouts.public`) so the route works
+in any host app without one, and pulls Tailwind from a CDN for zero setup. Publish to restyle:
 
 ```bash
 php artisan vendor:publish --tag=filament-booking-engine-views
 ```
 
-The shipped view is plain Tailwind markup, no build step and no dependency on the Filament theme.
+Swap the layout for your own app layout by overriding the view, or point the component at your
+own with the `#[Layout]` attribute on a subclass. The shipped markup is plain Tailwind, no build
+step and no dependency on the Filament theme.
 
 ## Tests
 
