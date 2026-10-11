@@ -17,10 +17,10 @@
             "email": "ayoubtamous0@gmail.com"
         }
     ],
-    "homepage": "https://github.com/ayoubtm1/filament-booking-engine",
+    "homepage": "https://github.com/mhdeveloperYs/filament-booking-engine",
     "support": {
-        "issues": "https://github.com/ayoubtm1/filament-booking-engine/issues",
-        "source": "https://github.com/ayoubtm1/filament-booking-engine"
+        "issues": "https://github.com/mhdeveloperYs/filament-booking-engine/issues",
+        "source": "https://github.com/mhdeveloperYs/filament-booking-engine"
     },
     "require": {
         "php": "^8.3",
