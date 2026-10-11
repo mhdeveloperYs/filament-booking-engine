@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MHStudio\FilamentBookingEngine\Livewire;
 
 use Carbon\CarbonImmutable;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use MHStudio\FilamentBookingEngine\Booking\BookingManager;
@@ -161,8 +160,8 @@ final class BookingWizard extends Component
         return app(AvailabilityEngine::class)->availableSlots($context);
     }
 
-    public function render(): View
+    public function view(): string
     {
-        return view('filament-booking-engine::livewire.booking-wizard');
+        return 'filament-booking-engine::livewire.booking-wizard';
     }
 }

@@ -17,12 +17,20 @@ We use [Laravel Pint](https://laravel.com/docs/pint):
 vendor/bin/pint
 ```
 
+## Static analysis
+
+We run [Larastan](https://github.com/larastan/larastan) (PHPStan) at level 6:
+
+```bash
+composer phpstan
+```
+
 ## Pull requests
 
 - Add tests for any behaviour change (the engine is correctness-critical).
 - Keep the domain (`src/Engine`, `src/Data`) framework-free — persistence belongs in
   `src/Schedule` and `src/Models`.
-- Run `vendor/bin/pest` and `vendor/bin/pint` before opening a PR.
+- Run `vendor/bin/pest`, `composer phpstan` and `vendor/bin/pint` before opening a PR.
 
 ## Reporting bugs
 

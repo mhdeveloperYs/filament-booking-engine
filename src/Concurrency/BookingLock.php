@@ -6,6 +6,7 @@ namespace MHStudio\FilamentBookingEngine\Concurrency;
 
 use Carbon\CarbonInterface;
 use Closure;
+use Illuminate\Contracts\Cache\LockProvider;
 use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Support\Facades\Cache;
 use MHStudio\FilamentBookingEngine\Exceptions\SlotUnavailableException;
@@ -34,9 +35,14 @@ final class BookingLock
     {
         $key = sprintf('booking-engine:lock:provider:%s:%s', $providerId, $day->toDateString());
 
+        $store = Cache::store($this->store)->getStore();
+
+        if (! $store instanceof LockProvider) {
+            throw new SlotUnavailableException('The configured cache store does not support locks.');
+        }
+
         try {
-            return Cache::store($this->store)
-                ->lock($key, $this->ttlSeconds)
+            return $store->lock($key, $this->ttlSeconds)
                 ->block($this->waitSeconds, $callback);
         } catch (LockTimeoutException $exception) {
             throw new SlotUnavailableException(

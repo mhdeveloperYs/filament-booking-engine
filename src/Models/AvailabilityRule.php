@@ -9,7 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MHStudio\FilamentBookingEngine\Enums\Weekday;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/** A weekly availability window, authored as a local clock face. */
+/**
+ * @property int $id
+ * @property int $provider_id
+ * @property Weekday $weekday
+ * @property string $start_time
+ * @property string $end_time
+ * @property int|null $slot_interval_minutes
+ * @property bool $is_active
+ */
 final class AvailabilityRule extends Model
 {
     use UsesConfiguredTable;
@@ -30,6 +38,9 @@ final class AvailabilityRule extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Provider, $this>
+     */
     public function provider(): BelongsTo
     {
         return $this->belongsTo(Provider::class);

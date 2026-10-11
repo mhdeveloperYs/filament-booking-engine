@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Static analysis with Larastan (PHPStan level 6) and a `phpstan` CI workflow.
+
+### Changed
+
+- `BookingLock` now verifies the configured cache store supports locks.
+- Eloquent models document their columns and relations for static analysis.
+
 ## [0.1.0] - 2026-10-11
 
 First public preview of the free core.

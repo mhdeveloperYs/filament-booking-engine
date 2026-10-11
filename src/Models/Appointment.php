@@ -12,7 +12,22 @@ use MHStudio\FilamentBookingEngine\Data\TimeRange;
 use MHStudio\FilamentBookingEngine\Enums\AppointmentStatus;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/** A booked interval. Stored in UTC. */
+/**
+ * @property int $id
+ * @property int $service_id
+ * @property int $provider_id
+ * @property AppointmentStatus $status
+ * @property CarbonImmutable $start_at
+ * @property CarbonImmutable $end_at
+ * @property string|null $timezone
+ * @property string $client_name
+ * @property string|null $client_email
+ * @property string|null $client_phone
+ * @property string|null $notes
+ * @property string|null $price
+ * @property-read Service $service
+ * @property-read Provider $provider
+ */
 final class Appointment extends Model
 {
     use UsesConfiguredTable;
@@ -34,11 +49,17 @@ final class Appointment extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Service, $this>
+     */
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
     }
 
+    /**
+     * @return BelongsTo<Provider, $this>
+     */
     public function provider(): BelongsTo
     {
         return $this->belongsTo(Provider::class);

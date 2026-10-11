@@ -29,6 +29,7 @@
         "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
+        "larastan/larastan": "^3.0",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1",
         "orchestra/testbench": "^9.0|^10.0",
@@ -54,6 +55,7 @@
     },
     "scripts": {
         "test": "pest",
+        "phpstan": "phpstan analyse --memory-limit=512M",
         "pint": "pint"
     },
     "config": {

@@ -78,8 +78,8 @@ final class ScheduleResolver
             ->where('end_at', '>', $from)
             ->get()
             ->map(function (Appointment $appointment): TimeRange {
-                $before = (int) ($appointment->service?->buffer_before_minutes ?? 0);
-                $after = (int) ($appointment->service?->buffer_after_minutes ?? 0);
+                $before = (int) $appointment->service->buffer_before_minutes;
+                $after = (int) $appointment->service->buffer_after_minutes;
 
                 return (new TimeRange(
                     CarbonImmutable::parse($appointment->start_at),

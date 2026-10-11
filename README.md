@@ -110,7 +110,9 @@ $appointment = app(BookingManager::class)->create(new BookingRequest(
 ## Testing
 
 ```bash
-composer test
+composer test       # Pest
+composer phpstan    # Larastan (PHPStan level 6)
+composer pint       # code style
 ```
 
 ## Documentation

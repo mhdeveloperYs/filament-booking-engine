@@ -6,9 +6,17 @@ namespace MHStudio\FilamentBookingEngine\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/** A date-specific override of the weekly rules. */
+/**
+ * @property int $id
+ * @property int $provider_id
+ * @property Carbon $date
+ * @property bool $is_closed
+ * @property array<int, array{start?: string, end?: string}>|null $windows
+ * @property string|null $reason
+ */
 final class AvailabilityException extends Model
 {
     use UsesConfiguredTable;
@@ -29,6 +37,9 @@ final class AvailabilityException extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Provider, $this>
+     */
     public function provider(): BelongsTo
     {
         return $this->belongsTo(Provider::class);
