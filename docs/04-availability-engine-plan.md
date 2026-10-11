@@ -74,10 +74,11 @@
 - [x] `assertAvailable` throws `SlotUnavailableException` on conflict
 - [x] `assertAvailable` returns void on success
 
-## DST / timezone test cases (add in M1.5 once models wire tz)
-- [ ] Spring-forward day: 02:30 local does not exist → slot skipped, day length preserved
-- [ ] Fall-back day: 01:30 occurs twice → generated once
-- [ ] Provider tz ≠ app tz → slots authored in provider tz, stored UTC
+## DST / timezone test cases (done — `tests/Unit/DstTest.php`, `tests/Feature/TimezoneBookingTest.php`)
+- [x] Spring-forward day: the 00:00-04:00 local window is 180 real minutes; no duplicate instants
+- [x] Fall-back day: the 00:00-04:00 local window is 300 real minutes
+- [x] A window starting inside the skipped hour collapses to zero length
+- [x] Provider tz ≠ UTC → booked and stored in UTC
 
 ## Definition of done (milestone 1)
 - Engine + value objects implemented, no DB access in engine.

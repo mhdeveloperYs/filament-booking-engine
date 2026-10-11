@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Static analysis with Larastan (PHPStan level 6) and a `phpstan` CI workflow.
+- Daylight-saving and cross-timezone tests (spring-forward, fall-back, non-UTC provider).
 
 ### Changed
 
