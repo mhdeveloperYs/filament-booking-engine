@@ -1,7 +1,7 @@
 # MH Booking Engine
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mhstudio/filament-booking-engine.svg?style=flat-square)](https://packagist.org/packages/mhstudio/filament-booking-engine)
-[![run-tests](https://github.com/mhstudio/filament-booking-engine/actions/workflows/run-tests.yml/badge.svg)](https://github.com/mhstudio/filament-booking-engine/actions/workflows/run-tests.yml)
+[![run-tests](https://github.com/ayoubtm1/filament-booking-engine/actions/workflows/run-tests.yml/badge.svg)](https://github.com/ayoubtm1/filament-booking-engine/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/mhstudio/filament-booking-engine.svg?style=flat-square)](https://packagist.org/packages/mhstudio/filament-booking-engine)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 

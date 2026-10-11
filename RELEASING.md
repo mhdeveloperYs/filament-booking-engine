@@ -8,20 +8,21 @@ a valid `composer.json` and a `v0.1.0` tag. The remaining steps need accounts/cr
 Create a **public** repo named `filament-booking-engine` under your account/org, then:
 
 ```bash
-git remote add origin git@github.com:mhstudio/filament-booking-engine.git
+git remote add origin git@github.com:ayoubtm1/filament-booking-engine.git
 git push -u origin main
 git push origin --tags
 ```
 
-> If your GitHub org/user is not `mhstudio`, update `homepage` and `support` in `composer.json`
-> and the badge URLs in `README.md` first.
+> The composer package name stays `mhstudio/filament-booking-engine`; only the repository lives
+> under `ayoubtm1`. If you ever move the repo, update `homepage`/`support` in `composer.json` and
+> the badge URLs in `README.md`.
 
-GitHub Actions will run `run-tests` (PHP 8.3/8.4) and `fix-php-code-style-issues` (Pint).
+GitHub Actions will run `run-tests` (PHP 8.3/8.4), `phpstan` and `fix-php-code-style-issues` (Pint).
 
 ## 2. Publish on Packagist
 
 1. Sign in at https://packagist.org with GitHub.
-2. **Submit** → paste `https://github.com/mhstudio/filament-booking-engine`.
+2. **Submit** → paste `https://github.com/ayoubtm1/filament-booking-engine`.
 3. Enable the **GitHub webhook** (Packagist → package → Settings) so new tags auto-update.
 
 `composer require mhstudio/filament-booking-engine` now works.

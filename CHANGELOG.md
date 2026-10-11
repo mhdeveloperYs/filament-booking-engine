@@ -45,5 +45,5 @@ First public preview of the free core.
 - Configurable table names, publishable config / migrations / views.
 - 62 tests (Pest) covering the engine, lifecycle, Filament UI rendering and the public flow.
 
-[Unreleased]: https://github.com/mhstudio/filament-booking-engine/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/mhstudio/filament-booking-engine/releases/tag/v0.1.0
+[Unreleased]: https://github.com/ayoubtm1/filament-booking-engine/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/ayoubtm1/filament-booking-engine/releases/tag/v0.1.0
