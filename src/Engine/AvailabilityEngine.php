@@ -9,13 +9,7 @@ use MHStudio\FilamentBookingEngine\Data\AvailabilityContext;
 use MHStudio\FilamentBookingEngine\Data\Slot;
 use MHStudio\FilamentBookingEngine\Data\TimeRange;
 
-/**
- * Computes bookable slots from availability windows, existing busy intervals and
- * the booking policy (notice, advance limit, buffers).
- *
- * The engine is deliberately pure and dependency-free: give it an
- * AvailabilityContext, get back Slot[].
- */
+/** Computes bookable slots from windows, occupied intervals and booking policy. */
 final class AvailabilityEngine
 {
     public function __construct(
@@ -24,7 +18,7 @@ final class AvailabilityEngine
     ) {}
 
     /**
-     * Every candidate slot, available or not, with the reason it was refused.
+     * Every candidate slot, with the reason it is unavailable.
      *
      * @return Slot[]
      */
@@ -71,9 +65,7 @@ final class AvailabilityEngine
         CarbonImmutable $earliest,
         ?CarbonImmutable $latest,
     ): ?string {
-        // Priority order is intentional and documented: a slot that is both out
-        // of range and busy reports the range problem first, which is the more
-        // actionable message for a user moving their window.
+        // Range problems are checked first: they are the more actionable message.
         if ($candidate->end->lessThanOrEqualTo($now)) {
             return Slot::REASON_PAST;
         }

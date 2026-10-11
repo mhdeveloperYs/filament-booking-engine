@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/**
- * A date-specific override: either a full closure or custom opening windows.
- */
+/** A date-specific override of the weekly rules. */
 final class AvailabilityException extends Model
 {
     use UsesConfiguredTable;

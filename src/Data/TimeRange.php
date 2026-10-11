@@ -7,14 +7,7 @@ namespace MHStudio\FilamentBookingEngine\Data;
 use Carbon\CarbonImmutable;
 use InvalidArgumentException;
 
-/**
- * A half-open time interval: [start, end).
- *
- * Half-open semantics are the whole point: two ranges that merely touch at an
- * edge (09:00-10:00 and 10:00-11:00) do NOT overlap, which is what makes
- * back-to-back appointments legal. Every overlap decision in the engine flows
- * through this class.
- */
+/** Half-open interval: [start, end). Adjacent ranges do not overlap. */
 final readonly class TimeRange
 {
     public function __construct(
@@ -52,9 +45,6 @@ final readonly class TimeRange
         return (int) $this->start->diffInMinutes($this->end);
     }
 
-    /**
-     * Strict, half-open overlap test.
-     */
     public function overlaps(self $other): bool
     {
         return $this->start->lessThan($other->end)
@@ -67,9 +57,7 @@ final readonly class TimeRange
             && $moment->lessThan($this->end);
     }
 
-    /**
-     * Widen the interval on both sides. Used to apply buffers before overlap checks.
-     */
+    /** Widen by buffers before an overlap check. */
     public function expand(int $beforeMinutes = 0, int $afterMinutes = 0): self
     {
         return new self(

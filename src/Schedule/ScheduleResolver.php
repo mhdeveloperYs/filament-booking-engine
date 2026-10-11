@@ -9,22 +9,16 @@ use MHStudio\FilamentBookingEngine\Data\AvailabilityContext;
 use MHStudio\FilamentBookingEngine\Data\TimeRange;
 use MHStudio\FilamentBookingEngine\Enums\Weekday;
 use MHStudio\FilamentBookingEngine\Models\Appointment;
+use MHStudio\FilamentBookingEngine\Models\AvailabilityRule;
 use MHStudio\FilamentBookingEngine\Models\Provider;
 use MHStudio\FilamentBookingEngine\Models\Service;
 
-/**
- * Turns persisted models (weekly rules, date exceptions, existing appointments)
- * into the framework-free value objects the engine consumes.
- *
- * This is the bridge between persistence and the pure domain.
- */
+/** Maps persisted schedule data onto the engine's value objects. */
 final class ScheduleResolver
 {
     /**
-     * Availability windows for a provider on a given (local) day.
-     *
-     * A date exception wins over the weekly rules: it either closes the day or
-     * replaces the windows with its own custom clocks.
+     * Availability windows for a provider on a day. A date exception overrides
+     * the weekly rules.
      *
      * @return TimeRange[]
      */
@@ -52,7 +46,7 @@ final class ScheduleResolver
             ->where('is_active', true)
             ->orderBy('start_time')
             ->get()
-            ->map(fn (object $rule): TimeRange => $this->windowFromTimes(
+            ->map(fn (AvailabilityRule $rule): TimeRange => $this->windowFromTimes(
                 $local,
                 (string) $rule->start_time,
                 (string) $rule->end_time,
@@ -62,8 +56,7 @@ final class ScheduleResolver
     }
 
     /**
-     * Existing occupancy intervals for a provider, each widened by the buffers of
-     * the service that owns it, so buffer policy is symmetric on both sides.
+     * Occupied intervals for a provider, each widened by its own service buffers.
      *
      * @return TimeRange[]
      */
@@ -73,15 +66,14 @@ final class ScheduleResolver
         CarbonImmutable $to,
         ?int $excludeAppointmentId = null,
     ): array {
-        // Fetch a wider window than requested: a busy interval may be expanded by
-        // its own buffers beyond the queried range.
+        // Widen the query window: applying buffers can extend an interval past it.
         $from = $from->subDay();
         $to = $to->addDay();
 
         return $provider->appointments()
             ->active()
             ->with('service')
-            ->when($excludeAppointmentId, fn ($query) => $query->whereKeyNot($excludeAppointmentId))
+            ->when($excludeAppointmentId !== null, fn ($query) => $query->whereKeyNot($excludeAppointmentId))
             ->where('start_at', '<', $to)
             ->where('end_at', '>', $from)
             ->get()
@@ -97,9 +89,7 @@ final class ScheduleResolver
             ->all();
     }
 
-    /**
-     * A ready-to-use engine context for a service + provider on a given day.
-     */
+    /** Engine context for a service and provider on a day. */
     public function contextFor(Service $service, Provider $provider, CarbonImmutable $day): AvailabilityContext
     {
         return new AvailabilityContext(

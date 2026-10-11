@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/**
- * A provider of appointments (staff member, room, resource). Optionally linked
- * to the host application's user model.
- */
+/** An appointment provider: staff member, room or resource. */
 final class Provider extends Model
 {
     use UsesConfiguredTable;
@@ -45,9 +42,7 @@ final class Provider extends Model
         return $this->hasMany(Appointment::class);
     }
 
-    /**
-     * The timezone this provider's clock faces are authored in.
-     */
+    /** The timezone this provider's clock faces are authored in. */
     public function bookingTimezone(): string
     {
         return $this->timezone

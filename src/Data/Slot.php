@@ -6,9 +6,7 @@ namespace MHStudio\FilamentBookingEngine\Data;
 
 use Carbon\CarbonImmutable;
 
-/**
- * A candidate appointment slot plus its availability verdict.
- */
+/** A candidate slot and its availability verdict. */
 final readonly class Slot
 {
     public const REASON_PAST = 'past';

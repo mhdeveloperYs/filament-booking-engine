@@ -11,15 +11,10 @@ use Illuminate\Support\Facades\Cache;
 use MHStudio\FilamentBookingEngine\Exceptions\SlotUnavailableException;
 
 /**
- * Serializes booking operations for a provider on a given day.
+ * Serializes bookings per provider and day.
  *
- * The lock is the first line of defence against double-booking races. It is
- * intentionally scoped to a *day* rather than a slot: bookable slots overlap
- * (a 60-minute service on a 15-minute grid), so per-slot locks would let two
- * overlapping requests race through independently.
- *
- * The database transaction inside the callback is the second line of defence
- * (row lock + ConflictGuard).
+ * Day-scoped rather than slot-scoped: candidate slots overlap (a 60 minute
+ * service on a 15 minute grid), so per-slot locks would not prevent races.
  */
 final class BookingLock
 {

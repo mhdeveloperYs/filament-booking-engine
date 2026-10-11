@@ -12,9 +12,7 @@ enum AppointmentStatus: string
     case Completed = 'completed';
     case NoShow = 'no_show';
 
-    /**
-     * Active statuses occupy a slot and must be considered by ConflictGuard.
-     */
+    /** Statuses that occupy a slot. */
     public function isActive(): bool
     {
         return match ($this) {

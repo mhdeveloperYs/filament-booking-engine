@@ -17,13 +17,7 @@ use MHStudio\FilamentBookingEngine\Models\Provider;
 use MHStudio\FilamentBookingEngine\Models\Service;
 use MHStudio\FilamentBookingEngine\Schedule\ScheduleResolver;
 
-/**
- * Customer-facing booking wizard: service -> provider -> date -> slot -> details.
- *
- * Slots come from the same AvailabilityEngine the admin uses, and the booking is
- * created through BookingManager — so the public path gets the same validation
- * and concurrency protection as the panel.
- */
+/** Public booking wizard. */
 final class BookingWizard extends Component
 {
     public ?int $serviceId = null;
@@ -126,7 +120,7 @@ final class BookingWizard extends Component
     /**
      * @return Collection<int, Service>
      */
-    public function getServicesProperty(): mixed
+    public function getServicesProperty(): Collection
     {
         return Service::query()->where('is_active', true)->orderBy('name')->get();
     }
@@ -134,7 +128,7 @@ final class BookingWizard extends Component
     /**
      * @return Collection<int, Provider>
      */
-    public function getProvidersProperty(): mixed
+    public function getProvidersProperty(): Collection
     {
         return Provider::query()->where('is_active', true)->orderBy('name')->get();
     }

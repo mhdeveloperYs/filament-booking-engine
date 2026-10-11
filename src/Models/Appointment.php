@@ -12,10 +12,7 @@ use MHStudio\FilamentBookingEngine\Data\TimeRange;
 use MHStudio\FilamentBookingEngine\Enums\AppointmentStatus;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/**
- * A booked interval. Times are stored in UTC; the client timezone is kept beside
- * them for display.
- */
+/** A booked interval. Stored in UTC. */
 final class Appointment extends Model
 {
     use UsesConfiguredTable;
@@ -48,8 +45,6 @@ final class Appointment extends Model
     }
 
     /**
-     * Only active appointments occupy a slot.
-     *
      * @param  Builder<Appointment>  $query
      */
     public function scopeActive(Builder $query): void

@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/**
- * A bookable service (e.g. "Consultation", 60 min, with a 10 min buffer).
- */
+/** A bookable service. */
 final class Service extends Model
 {
     use UsesConfiguredTable;

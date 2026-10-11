@@ -6,18 +6,12 @@ namespace MHStudio\FilamentBookingEngine\Data;
 
 use Carbon\CarbonImmutable;
 
-/**
- * The complete, framework-free input to the AvailabilityEngine.
- *
- * The persistence layer is responsible for turning models (rules, exceptions,
- * existing appointments) into these value objects. The engine itself never
- * touches the database, which is what makes it deterministic and testable.
- */
+/** Input for the availability engine. */
 final readonly class AvailabilityContext
 {
     /**
-     * @param  TimeRange[]  $windows  Availability windows (in the provider timezone)
-     * @param  TimeRange[]  $busy  Already-occupied intervals (past, buffers applied by engine)
+     * @param  TimeRange[]  $windows  Availability windows, in the provider timezone
+     * @param  TimeRange[]  $busy  Occupied intervals
      */
     public function __construct(
         public array $windows = [],

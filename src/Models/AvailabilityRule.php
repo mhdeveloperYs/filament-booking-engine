@@ -9,9 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MHStudio\FilamentBookingEngine\Enums\Weekday;
 use MHStudio\FilamentBookingEngine\Models\Concerns\UsesConfiguredTable;
 
-/**
- * A recurring weekly availability window, authored as local clock faces.
- */
+/** A weekly availability window, authored as a local clock face. */
 final class AvailabilityRule extends Model
 {
     use UsesConfiguredTable;

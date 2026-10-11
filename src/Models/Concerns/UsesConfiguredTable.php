@@ -7,8 +7,7 @@ namespace MHStudio\FilamentBookingEngine\Models\Concerns;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Resolves the model's table from package config so hosts can remap table names
- * (e.g. to avoid collisions with an existing schema).
+ * Resolves the table name from package config.
  *
  * @mixin Model
  */

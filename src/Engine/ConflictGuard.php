@@ -7,21 +7,9 @@ namespace MHStudio\FilamentBookingEngine\Engine;
 use MHStudio\FilamentBookingEngine\Data\TimeRange;
 use MHStudio\FilamentBookingEngine\Exceptions\SlotUnavailableException;
 
-/**
- * The single source of truth for the question "does this proposed interval
- * collide with anything?".
- *
- * This is the pure decision function. Persistence-bound atomic booking (advisory
- * locks + partial unique index) calls into this same logic so the answer is
- * identical whether we are previewing slots or committing a booking.
- */
+/** Decides whether a candidate interval collides with an occupied one. */
 final class ConflictGuard
 {
-    public function overlaps(TimeRange $a, TimeRange $b): bool
-    {
-        return $a->overlaps($b);
-    }
-
     /**
      * @param  iterable<TimeRange>  $busy
      */

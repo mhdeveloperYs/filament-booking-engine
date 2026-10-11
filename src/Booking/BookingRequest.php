@@ -9,9 +9,7 @@ use MHStudio\FilamentBookingEngine\Enums\AppointmentStatus;
 use MHStudio\FilamentBookingEngine\Models\Provider;
 use MHStudio\FilamentBookingEngine\Models\Service;
 
-/**
- * Input for a new booking. Everything the manager needs to validate and persist.
- */
+/** Input for {@see BookingManager::create()}. */
 final readonly class BookingRequest
 {
     public function __construct(

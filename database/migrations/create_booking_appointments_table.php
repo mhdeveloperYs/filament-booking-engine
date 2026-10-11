@@ -26,8 +26,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();
 
-            // Supports the overlap query used by the availability engine and the
-            // atomic guard added with BookingManager.
+            // Used by the overlap query in ScheduleResolver.
             $table->index(['provider_id', 'start_at', 'end_at']);
             $table->index('status');
         });

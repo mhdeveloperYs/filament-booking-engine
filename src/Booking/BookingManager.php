@@ -19,17 +19,7 @@ use MHStudio\FilamentBookingEngine\Models\Appointment;
 use MHStudio\FilamentBookingEngine\Models\Provider;
 use MHStudio\FilamentBookingEngine\Schedule\ScheduleResolver;
 
-/**
- * The application-layer front door to an appointment's lifecycle.
- *
- * Every write goes through here so that:
- *  - the slot is validated against availability and existing bookings;
- *  - the operation is serialized (cache lock) and transactional (row lock);
- *  - the matching domain event is dispatched exactly once.
- *
- * Callers should never flip a status directly: doing so would skip the guard and
- * the event.
- */
+/** Entry point for the appointment lifecycle: validates, serializes and persists. */
 final class BookingManager
 {
     private readonly BookingLock $lock;

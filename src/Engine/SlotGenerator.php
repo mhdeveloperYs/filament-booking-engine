@@ -6,15 +6,7 @@ namespace MHStudio\FilamentBookingEngine\Engine;
 
 use MHStudio\FilamentBookingEngine\Data\TimeRange;
 
-/**
- * Turns availability windows into candidate slot ranges.
- *
- * A slot is emitted only when it fits entirely inside its window. The interval
- * controls the grid of candidate start times and is independent of the duration,
- * so a 60-minute service on a 15-minute grid produces overlapping candidates —
- * callers decide what to do with them (the AvailabilityEngine dedupes via busy
- * intervals; a picker may collapse overlaps).
- */
+/** Generates candidate slot ranges from availability windows. */
 final class SlotGenerator
 {
     /**
@@ -27,8 +19,7 @@ final class SlotGenerator
             return [];
         }
 
-        // A non-positive interval is meaningless; fall back to the duration so
-        // candidates tile the window without overlapping.
+        // Without a positive interval, tile the window edge to edge.
         $interval = $intervalMinutes > 0 ? $intervalMinutes : $durationMinutes;
 
         $slots = [];
