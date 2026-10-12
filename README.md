@@ -115,19 +115,6 @@ composer phpstan    # Larastan (PHPStan level 6)
 composer pint       # code style
 ```
 
-## Documentation
-
-The `docs/` folder contains the design record:
-
-| Doc | Contents |
-|---|---|
-| `01-competitor-review.md` | Landscape and evidence |
-| `02-build-vs-wrap.md` | Why the engine is built in-house |
-| `03-architecture.md` | Layers, time model, invariants |
-| `04-availability-engine-plan.md` | Engine plan and test cases |
-| `05-booking-lifecycle.md` | Lifecycle + concurrency |
-| `06-filament-ui.md` | Panel resources |
-| `07-public-booking.md` | Public wizard |
 
 ## Roadmap
 
